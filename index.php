@@ -46,9 +46,32 @@ $app->get('/receita/:id', function($id) use ($app){
 	(new \controllers\Receita($app))->get($id);
 });
 
+//get receita por id ingredientes
 $app->get('/receita/ingredientes/:id+', function($ids) use ($app){
     (new \controllers\Receita($app))->getReceitaIngrediente($ids);
 });
+
+//get categorias
+$app->get('/categorias/', function() use ($app){
+    (new \controllers\Categoria($app))->lista();
+});
+
+//get ingredientes por categoria
+$app->get('/ingredientes/categoria/:id', function($id) use ($app){
+    (new \controllers\Categoria($app))->get($id);
+});
+
+//get todos ingredientes
+$app->get('/ingredientes/', function() use ($app){
+    (new \controllers\Ingrediente($app))->lista();
+});
+
+//get ingrediente
+$app->get('/ingrediente/:id', function($id) use ($app){
+    (new \controllers\Ingrediente($app))->get($id);
+});
+
+
 
 //Rodando aplicação
 $app->run();
