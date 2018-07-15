@@ -42,11 +42,13 @@ $app->get('/receitas/', function() use ($app){
 });
 
 //get receita
-$app->get('/receita/ingredientes/:id+', function($ids) use ($app){
-	(new \controllers\Receita($app))->getReceitaIngrediente($ids);
+$app->get('/receita/:id', function($id) use ($app){
+	(new \controllers\Receita($app))->get($id);
 });
 
-
+$app->get('/receita/ingredientes/:id+', function($ids) use ($app){
+    (new \controllers\Receita($app))->getReceitaIngrediente($ids);
+});
 
 //Rodando aplicação
 $app->run();
