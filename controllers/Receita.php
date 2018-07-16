@@ -18,7 +18,7 @@ namespace controllers{
 		*/
 		public function lista(){
 			global $app;
-			$sth = $this->PDO->prepare("SELECT * FROM heroku_a240fb0bf187ac6.receitas;");
+			$sth = $this->PDO->prepare("SELECT * FROM heroku_a240fb0bf187ac6.receitas order by NomeReceita;");
 			$sth->execute();
 			$result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 			$app->render('default.php',["data"=>$result],200); 
