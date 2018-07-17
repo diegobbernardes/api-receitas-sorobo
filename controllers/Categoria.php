@@ -32,6 +32,7 @@ namespace controllers{
                 }
             }
 			$sth = $this->PDO->prepare("SELECT * FROM heroku_a240fb0bf187ac6.ingredientes WHERE idCategoria in(:id)");
+			var_dump($ids_l);
 			$sth ->bindValue(':id',$ids_l);
             $sth->execute();
             $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
