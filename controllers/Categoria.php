@@ -21,8 +21,18 @@ namespace controllers{
 		}
 		public function get($id){
 			global $app;
-			$sth = $this->PDO->prepare("SELECT * FROM heroku_a240fb0bf187ac6.ingredientes WHERE idCategoria = :id");
-			$sth ->bindValue(':id',$id);
+			$valida = true;
+            $ids_l = "" ;
+            foreach ($id as $value) {
+                if($valida){
+                    $valida = false;
+                    $ids_l = $value;
+                }else{
+                    $ids_l = $ids_l . "," . $value;
+                }
+            }
+			$sth = $this->PDO->prepare("SELECT * FROM heroku_a240fb0bf187ac6.ingredientes WHERE idCategoria in(:id)");
+			$sth ->bindValue(':id',$ids_l);
             $sth->execute();
             $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
             $app->render('default.php',["data"=>$result],200);

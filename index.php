@@ -57,7 +57,7 @@ $app->get('/categorias/', function() use ($app){
 });
 
 //get ingredientes por categoria
-$app->get('/ingredientes/categoria/:id', function($id) use ($app){
+$app->get('/ingredientes/categoria/:id+', function($id) use ($app){
     (new \controllers\Categoria($app))->get($id);
 });
 
